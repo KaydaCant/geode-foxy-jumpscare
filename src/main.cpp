@@ -27,8 +27,6 @@ const int FRAME_HEIGHT = 768;
 const int FRAME_X_OFFSET = 1;
 const int FRAME_Y_OFFSET = 1;
 
-bool garunteeJumpscare = false;
-
 int jumpscareFrame = 0;
 float frameCountdown = 0;
 
@@ -50,14 +48,7 @@ class $modify(MyGameManager, GameManager) {
 			int random = 1 + (rand() % jumpscareChance);
 			bool doJumpscare = random == 1;
 
-			geode::log::info("Interval hit");
-			auto randomString = std::to_string(random);
-			std::cout << "Random number: " << randomString << std::endl;
-			
-			if (garunteeJumpscare) geode::log::info("Jumpscare garunteed");
-
-			if (doJumpscare == true || garunteeJumpscare == true) MyGameManager::startJumpscare();
-			garunteeJumpscare = false;
+			if (doJumpscare == true) MyGameManager::startJumpscare();
 		}
 
 		MyGameManager::updateJumpscare(delta);
@@ -66,16 +57,13 @@ class $modify(MyGameManager, GameManager) {
 	}
 
 	void startJumpscare() {
-		geode::log::info("Jumpscaring");
 		if (raMode) {
-			geode::log::info("RA MODE");
 			auto scene = CCScene::create();
 			//auto scene = CCDirector::sharedDirector()->getRunningScene();
 			//scene->removeAllChildrenWithCleanup(true);
 			auto raScene = SecretLayer4::create();
 			scene->addChild(raScene);
 			
-
 			CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1, scene));
 			return;
 		}
@@ -102,7 +90,6 @@ class $modify(MyGameManager, GameManager) {
 
 	void updateJumpscare(float delta) {
 		if (!jumpscareAnimating) return;
-		geode::log::info("Updating Jumpscare");
 
 		if (jumpscareSprite == NULL) { geode::log::error("JumpscareSprite is NULL"); }
 
@@ -112,28 +99,15 @@ class $modify(MyGameManager, GameManager) {
 			jumpscareFrame += 1;
 
 			if (jumpscareFrame >= JUMPSCARE_FRAME_COUNT) {
-				geode::log::info("Reached last frame");
 				MyGameManager::stopJumpscare();
 				return;
 			}
 		}
 
 		jumpscareSprite->setTexture(frames[jumpscareFrame]);
-
-		/*int x = std::floor(jumpscareFrame / 8);
-		int y = 8 - (jumpscareFrame % 8);
-
-		int xPos = FRAME_X_OFFSET * (x + 1) + FRAME_WIDTH * x;
-		int yPos = FRAME_Y_OFFSET * (y + 1) + FRAME_HEIGHT * y;
-
-		std::cout << "(" << std::to_string(x) << "," << std::to_string(y) << ")" << std::endl;
-
-		auto rect = CCRect(xPos, yPos, FRAME_WIDTH, FRAME_HEIGHT);
-		jumpscareSprite->setTextureRect(rect);*/
 	}
 
 	void stopJumpscare() {
-		geode::log::info("Stopping Jumpscare");
 		jumpscareAnimating = false;
 		jumpscareSprite->removeFromParentAndCleanup(true);
 		jumpscareSprite->release();
@@ -190,4 +164,5 @@ $execute{
 	listenForSettingChanges("jumpscare-scale", [](float value) {
 		jumpscareScale = value;
 	});
+
 };
