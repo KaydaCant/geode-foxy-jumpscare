@@ -114,18 +114,6 @@ class $modify(MyGameManager, GameManager) {
 	}
 };
 
-#include <Geode/modify/UILayer.hpp>
-class $modify(MyUILayer, UILayer) {
-	virtual void keyDown(cocos2d::enumKeyCodes p0) {
-		UILayer::keyDown(p0);
-
-		if (p0 == cocos2d::enumKeyCodes::KEY_Q) {
-			jumpscareCountdown = 0;
-			garunteeJumpscare = true;
-		}
-	}
-};
-
 $execute{
 	frames[0] = CCTextureCache::sharedTextureCache()->addImage("Jumpscare0.png"_spr, true);
 	frames[1] = CCTextureCache::sharedTextureCache()->addImage("Jumpscare1.png"_spr, true);
@@ -166,3 +154,4 @@ $execute{
 	});
 
 };
+
