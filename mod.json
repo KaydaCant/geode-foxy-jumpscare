@@ -1,5 +1,5 @@
 {
-	"geode": "4.4.0",
+	"geode": "4.10.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -12,7 +12,7 @@
 	"developer": "KaydaCant",
 	"description": "Ahh",
 	"dependencies": {
-		"geode.node-ids": ">=v1.20.0"
+		"geode.node-ids": ">=v1.21.0"
 	},
 
 	"resources": {
@@ -67,4 +67,5 @@
 			"description": "Curse of ra"
 		}
 	}
+
 }
