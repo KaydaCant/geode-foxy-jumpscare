@@ -14,6 +14,7 @@
 	"dependencies": {
 		"geode.node-ids": ">=v1.21.0"
 	},
+	"tags": ["universal", "offline", "joke"],
 
 	"resources": {
 		"sprites": [ "resources/*.png" ],
@@ -69,4 +70,5 @@
 	}
 
 }
+
 
