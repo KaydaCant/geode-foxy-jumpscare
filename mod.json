@@ -8,7 +8,7 @@
 	},
 	"id": "kaydacant.foxyjumpscare",
 	"name": "1/10000 Chance Foxy Jumpscare",
-	"version": "v1.0.1",
+	"version": "v1.0.2",
 	"developer": "KaydaCant",
 	"description": "Ahh",
 	"dependencies": {
@@ -70,5 +70,6 @@
 	}
 
 }
+
 
 
